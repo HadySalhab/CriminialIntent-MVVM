@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CriminialIntent-Refactored</string>
+    <string name="empty_list">You have no crimes added</string>
 </resources>
