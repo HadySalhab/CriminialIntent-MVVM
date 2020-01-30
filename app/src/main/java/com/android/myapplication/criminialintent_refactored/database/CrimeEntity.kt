@@ -1,4 +1,4 @@
-package com.android.myapplication.criminialintent_refactored
+package com.android.myapplication.criminialintent_refactored.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
