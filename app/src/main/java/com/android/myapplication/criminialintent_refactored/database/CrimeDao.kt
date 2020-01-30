@@ -8,10 +8,10 @@ import java.util.*
 interface CrimeDao {
 
     @Query("SELECT * FROM crimeentity")
-    fun getCrimes(): LiveData<List<CrimeEntity>>
+    fun allCrimes(): LiveData<List<CrimeEntity>>
 
     @Query("SELECT * FROM crimeentity WHERE id=(:id)")
-    fun getCrime(id: UUID): LiveData<CrimeEntity?>
+    fun getCrime(id: String): LiveData<CrimeEntity?>
 
     @Update
     fun updateCrime(crime: CrimeEntity)
