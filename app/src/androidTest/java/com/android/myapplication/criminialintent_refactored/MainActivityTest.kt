@@ -2,6 +2,7 @@ package com.android.myapplication.criminialintent_refactored
 
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -22,7 +23,17 @@ class MainActivityTest
         val testScenario = ActivityScenario.launch(MainActivity::class.java)
 
         onView(withId(R.id.aboutFragment)).perform(click())
+
         onView(withId(R.id.about)).check(matches(isDisplayed()))
     }
 
+    @Test
+    fun onBackPressed_AboutFragmentIsDisplayed_ShouldNavigateToListFragment(){
+        val testScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        onView(withId(R.id.aboutFragment)).perform(click())
+        pressBack()
+
+        onView(withId(R.id.recyclerView)).check(matches(isDisplayed()))
+    }
 }
