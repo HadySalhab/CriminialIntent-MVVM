@@ -22,6 +22,9 @@ class App : Application() {
         viewModel {
             ListCrimesViewModel(get())
         }
+        viewModel {
+            CrimeDetailViewModel(get())
+        }
     }
 
     override fun onCreate() {

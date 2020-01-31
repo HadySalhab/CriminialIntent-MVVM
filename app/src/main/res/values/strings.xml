@@ -3,4 +3,7 @@
     <string name="toolbar_title">Crimes</string>
     <string name="empty_list">You have no crimes added</string>
     <string name="menuItem_about">About</string>
+    <string name="title">Title</string>
+    <string name="crime_hint">Enter a title for the crime.</string>
+    <string name="crime_suspect">Crime Suspect</string>
 </resources>

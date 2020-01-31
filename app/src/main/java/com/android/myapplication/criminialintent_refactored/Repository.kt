@@ -20,7 +20,7 @@ class Repository(private val dao: CrimeDao, private val dataTransformer: DataTra
         dataTransformer.transformToModel(crimeEntity)
     }
 
-    fun getCrime(crimeId: String) {
+    fun loadCrime(crimeId: String) {
         _crimeIdLiveData.value = crimeId
     }
 
