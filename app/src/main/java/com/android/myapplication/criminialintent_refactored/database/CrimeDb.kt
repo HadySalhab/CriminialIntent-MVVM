@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 private const val  DB_NAME = "crime.db"
-@Database(entities = [CrimeEntity::class],version = 1)
+@Database(entities = [CrimeEntity::class],version = 1,exportSchema = false)
 @TypeConverters(CrimeTypeConverters::class)
 abstract class CrimeDb:RoomDatabase(){
     abstract fun crimeDao(): CrimeDao

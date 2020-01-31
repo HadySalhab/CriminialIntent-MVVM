@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.android.myapplication.criminialintent_refactored.databinding.FragmentCrimesListBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,8 +35,19 @@ class ListCrimesFragment : Fragment() {
             addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         }
         binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        binding.lifecycleOwner = this.viewLifecycleOwner
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.navigate.observe(this.viewLifecycleOwner){navigate->
+            if(navigate){
+                viewModel.resetNavigation()
+                val action = ListCrimesFragmentDirections.actionListCrimesFragmentToCrimeFragment(null)
+                findNavController().navigate(action)
+            }
+        }
     }
 
 

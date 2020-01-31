@@ -11,7 +11,9 @@
             name="viewModel"
             type="com.android.myapplication.criminialintent_refactored.ListCrimesViewModel" />
     </data>
-
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -41,4 +43,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_note_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/medium_margin"
+            app:srcCompat="@drawable/ic_add"
+            android:layout_gravity="end|bottom"
+            android:onClick="@{()->viewModel.navigateToEdit()}"
+            />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
