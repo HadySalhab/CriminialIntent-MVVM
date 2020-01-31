@@ -1,6 +1,7 @@
 package com.android.myapplication.criminialintent_refactored
 
 import android.text.Layout
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -11,7 +12,9 @@ import com.android.myapplication.criminialintent_refactored.databinding.ListItem
 class ListCrimesAdapter(
     val onCrimeClickListener: (CrimeModel) -> Unit
 ) : ListAdapter<CrimeModel, ListCrimesAdapter.CrimesViewHolder>(CrimesDiffUtil()) {
-
+    companion object {
+        private const val TAG = "ListCrimesAdapter"
+    }
     class CrimesViewHolder private constructor(
         val binding: ListItemCrimeBinding,
         val onCrimeClickListener: (CrimeModel) -> Unit
@@ -41,6 +44,7 @@ class ListCrimesAdapter(
         val crimeModel = getItem(position)
         crimeModel?.let {
             holder.bind(it)
+            Log.d(TAG, "onBindViewHolder: ${it}")
         }
     }
 

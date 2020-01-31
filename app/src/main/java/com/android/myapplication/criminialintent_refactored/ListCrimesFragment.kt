@@ -2,6 +2,7 @@ package com.android.myapplication.criminialintent_refactored
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,8 @@ class ListCrimesFragment : Fragment() {
     private lateinit var crimeAdapter :ListCrimesAdapter
 
     private val onCrimeClickListener: (CrimeModel) -> Unit = { crime ->
-       //should navigate
+        val action = ListCrimesFragmentDirections.actionListCrimesFragmentToCrimeFragment(crime.id)
+        findNavController().navigate(action)
     }
 
     override fun onCreateView(
@@ -48,6 +50,7 @@ class ListCrimesFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
+
     }
 
 

@@ -15,11 +15,6 @@ class ListCrimesViewModel (val repository: Repository) : ViewModel() {
         it.isNullOrEmpty()
     }
 
-    fun addCrime(crime: CrimeModel) {
-        viewModelScope.launch {
-            repository.save(crimeModel = crime)
-        }
-    }
     fun navigateToEdit(){
         _navigate.value = true
     }

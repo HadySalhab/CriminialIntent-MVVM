@@ -10,14 +10,11 @@ interface CrimeDao {
     fun allCrimes(): LiveData<List<CrimeEntity>>
 
     @Query("SELECT * FROM crimeentity WHERE id=(:id)")
-    fun getCrime(id: String): LiveData<CrimeEntity?>
+    suspend fun getCrime(id: String): CrimeEntity?
 
-    @Update
-    fun updateCrime(crime: CrimeEntity)
-
-    @Insert
-    fun addCrime(crime: CrimeEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addCrime(crime: CrimeEntity)
 
     @Delete
-    fun deleteCrime(crime:CrimeEntity)
+    suspend fun deleteCrime(crime: CrimeEntity)
 }
