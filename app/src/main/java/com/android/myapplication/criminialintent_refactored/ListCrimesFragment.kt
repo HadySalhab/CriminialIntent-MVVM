@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.criminialintent_refactored.databinding.FragmentCrimesListBinding
 
 /**
@@ -14,12 +16,25 @@ import com.android.myapplication.criminialintent_refactored.databinding.Fragment
  */
 class ListCrimesFragment : Fragment() {
     private lateinit var binding:FragmentCrimesListBinding
+    private lateinit var viewModel:ListCrimesViewModel
+    private lateinit var crimeAdapter :ListCrimesAdapter
+
+    private val onCrimeClickListener: (CrimeModel) -> Unit = { crime ->
+       //should navigate
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        crimeAdapter = ListCrimesAdapter(onCrimeClickListener)
         binding = FragmentCrimesListBinding.inflate(layoutInflater,container,false)
+        binding.recyclerView.apply {
+            adapter =crimeAdapter
+            addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        }
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 

@@ -4,6 +4,12 @@
 
     <data>
 
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.android.myapplication.criminialintent_refactored.ListCrimesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,6 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/empty_list"
+            android:visibility="@{viewModel.isEmpty ? View.VISIBLE : View.GONE}"
             android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +34,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:notesList="@{viewModel.crimeListLiveData}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
