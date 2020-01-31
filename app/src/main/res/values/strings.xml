@@ -6,4 +6,6 @@
     <string name="title">Title</string>
     <string name="crime_hint">Enter a title for the crime.</string>
     <string name="crime_suspect">Crime Suspect</string>
+    <string name="save">Save</string>
+    <string name="delete">delete</string>
 </resources>
