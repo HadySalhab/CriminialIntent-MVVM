@@ -31,21 +31,34 @@ class RepositoryTest {
     //unitOfWork_stateUnderTest_expectedBehavior
     fun save_shouldCallDb() = runBlockingTest {
         doReturn(crimeEntity).whenever(dataTransformerMock).transformToEntity(any())
+        val job = launch {
             SUT.save(crimeModel)
-        verify(daoMock).addCrime(eq(crimeEntity))
+            verify(daoMock).addCrime(eq(crimeEntity))
+        }
+        job.cancel()
     }
+
     @Test
     fun delete_shouldCallDb() = runBlockingTest {
         doReturn(crimeEntity).whenever(dataTransformerMock).transformToEntity(any())
+
+        val job = launch {
             SUT.delete(crimeModel)
-        verify(daoMock).deleteCrime(eq(crimeEntity))
+            verify(daoMock).deleteCrime(eq(crimeEntity))
+        }
+        job.cancel()
     }
+
     @Test
     fun update_shouldCallDb() = runBlockingTest {
         doReturn(crimeEntity).whenever(dataTransformerMock).transformToEntity(any())
-            SUT.update(crimeModel)
 
-        verify(daoMock).updateCrime(eq(crimeEntity))
+        val job = launch {
+            SUT.update(crimeModel)
+            verify(daoMock).updateCrime(eq(crimeEntity))
+        }
+
+        job.cancel()
     }
 
 

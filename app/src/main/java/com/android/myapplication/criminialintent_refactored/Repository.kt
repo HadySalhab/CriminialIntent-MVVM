@@ -8,6 +8,8 @@ import androidx.lifecycle.Transformations
 import androidx.room.Dao
 import com.android.myapplication.criminialintent_refactored.database.CrimeDao
 import com.android.myapplication.criminialintent_refactored.database.CrimeEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.xml.transform.Transformer
 
 class Repository(private val dao: CrimeDao, private val dataTransformer: DataTransformer) {
@@ -29,15 +31,22 @@ class Repository(private val dao: CrimeDao, private val dataTransformer: DataTra
 
 
     suspend fun save(crimeModel: CrimeModel) {
-        dao.addCrime(dataTransformer.transformToEntity(crimeModel)!!)
+        withContext(Dispatchers.IO) {
+            dao.addCrime(dataTransformer.transformToEntity(crimeModel)!!)
+        }
+
     }
 
     suspend fun delete(crimeModel: CrimeModel) {
-        dao.deleteCrime(dataTransformer.transformToEntity(crimeModel)!!)
+        withContext(Dispatchers.IO) {
+            dao.deleteCrime(dataTransformer.transformToEntity(crimeModel)!!)
+        }
 
     }
 
     suspend fun update(crimeModel: CrimeModel) {
-        dao.updateCrime(dataTransformer.transformToEntity(crimeModel)!!)
+        withContext(Dispatchers.IO) {
+            dao.updateCrime(dataTransformer.transformToEntity(crimeModel)!!)
+        }
     }
 }
