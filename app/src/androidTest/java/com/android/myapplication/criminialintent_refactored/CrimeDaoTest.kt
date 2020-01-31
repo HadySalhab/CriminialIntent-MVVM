@@ -11,6 +11,7 @@ import com.android.myapplication.criminialintent_refactored.database.CrimeEntity
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
+import kotlinx.coroutines.runBlocking
 import org.junit.*
 import org.junit.runner.RunWith
 import org.mockito.ArgumentCaptor
@@ -48,9 +49,10 @@ class CrimeDaoTest {
     }
 
     @Test
-    fun addCrime_shouldSaveCrimeToDb(){
+    fun addCrime_shouldSaveCrimeToDb()= runBlocking{
         val crime = CrimeEntity()
         val testObserver:Observer<List<CrimeEntity>> = mock()
+
 
         SUT.addCrime(crime)
 
@@ -63,7 +65,7 @@ class CrimeDaoTest {
     }
 
     @Test
-    fun allCrimes_dbNotEmpty_shouldReturnCorrectData(){
+    fun allCrimes_dbNotEmpty_shouldReturnCorrectData()=runBlocking{
         val crime1 = CrimeEntity()
         val crime2 = CrimeEntity()
         SUT.addCrime(crime1)
@@ -81,14 +83,13 @@ class CrimeDaoTest {
     }
 
     @Test
-    fun getCrime_shouldReturnCorrectData(){
+    fun getCrime_shouldReturnCorrectData()=runBlocking{
         val crime1 = CrimeEntity()
         SUT.addCrime(crime1)
-        val testObserver:Observer<CrimeEntity?> = mock()
 
-        SUT.getCrime(crime1.id).observeForever(testObserver)
+        val result = SUT.getCrime(crime1.id)
 
-        verify(testObserver).onChanged(eq(crime1))
+        Assert.assertEquals(crime1,result)
     }
 
 

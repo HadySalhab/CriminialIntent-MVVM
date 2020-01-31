@@ -8,6 +8,8 @@ import com.android.myapplication.criminialintent_refactored.database.CrimeDao
 import com.android.myapplication.criminialintent_refactored.database.CrimeDb
 import com.android.myapplication.criminialintent_refactored.database.CrimeEntity
 import com.nhaarman.mockitokotlin2.*
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
@@ -28,7 +30,7 @@ class RepositoryInstrumentedTest {
     private val SUT = Repository(crimeDao, dataTransformer)
 
     @Test
-    fun addCrime_shouldTriggerAddEvent() {
+    fun addCrime_shouldTriggerAddEvent() = runBlocking {
         val crime = CrimeEntity()
         val crimeModel =
             CrimeModel(crime.id, crime.title, crime.date, crime.isSolved, crime.suspect)
