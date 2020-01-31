@@ -10,13 +10,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.criminialintent_refactored.databinding.FragmentCrimesListBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * A simple [Fragment] subclass.
  */
 class ListCrimesFragment : Fragment() {
     private lateinit var binding:FragmentCrimesListBinding
-    private lateinit var viewModel:ListCrimesViewModel
+    private val viewModel:ListCrimesViewModel by viewModel()
     private lateinit var crimeAdapter :ListCrimesAdapter
 
     private val onCrimeClickListener: (CrimeModel) -> Unit = { crime ->
