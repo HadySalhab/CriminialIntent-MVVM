@@ -2,13 +2,11 @@ package com.android.myapplication.criminialintent_refactored
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.criminialintent_refactored.databinding.FragmentCrimesListBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

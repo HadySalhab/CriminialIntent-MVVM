@@ -4,9 +4,7 @@ package com.android.myapplication.criminialintent_refactored
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.TextView
 import com.android.myapplication.criminialintent_refactored.databinding.FragmentAboutBinding
-import com.android.myapplication.criminialintent_refactored.databinding.FragmentCrimesListBinding
 
 /**
  * A simple [Fragment] subclass.

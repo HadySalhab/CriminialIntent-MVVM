@@ -2,7 +2,6 @@ package com.android.myapplication.criminialintent_refactored.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import java.util.*
 
 @Dao
 interface CrimeDao {

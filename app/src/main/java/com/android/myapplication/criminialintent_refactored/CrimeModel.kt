@@ -1,6 +1,5 @@
 package com.android.myapplication.criminialintent_refactored
 
-import androidx.room.PrimaryKey
 import java.util.*
 
 data class CrimeModel( val id: String = UUID.randomUUID().toString(),
