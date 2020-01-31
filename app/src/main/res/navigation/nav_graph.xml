@@ -7,9 +7,8 @@
     <fragment
         android:id="@+id/listCrimesFragment"
         android:name="com.android.myapplication.criminialintent_refactored.ListCrimesFragment"
-        android:label="ListCrimesFragment"
-        tools:layout="@layout/fragment_crimes_list"
-        >
+        android:label="Crime List"
+        tools:layout="@layout/fragment_crimes_list">
         <action
             android:id="@+id/action_listCrimesFragment_to_crimeFragment"
             app:destination="@id/crimeFragment" />
@@ -23,9 +22,8 @@
     <fragment
         android:id="@+id/crimeFragment"
         android:name="com.android.myapplication.criminialintent_refactored.CrimeFragment"
-        android:label="CrimeFragment"
-        tools:layout="@layout/fragment_crime"
-        >
+        android:label="Crime"
+        tools:layout="@layout/fragment_crime">
         <argument
             android:name="id"
             app:argType="string"
