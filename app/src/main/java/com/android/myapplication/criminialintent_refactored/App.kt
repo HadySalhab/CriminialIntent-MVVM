@@ -22,8 +22,8 @@ class App : Application() {
         viewModel {
             ListCrimesViewModel(get())
         }
-        viewModel {
-            CrimeDetailViewModel(get())
+        viewModel { (crimeId:String)->
+            CrimeDetailViewModel(get(),crimeId)
         }
     }
 
