@@ -14,26 +14,25 @@ import org.mockito.ArgumentMatchers
 import org.mockito.Mockito.*
 import java.util.*
 
-class CrimeDetailViewModelTest{
+class CrimeDetailViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
     private val CRIME_ID = UUID.randomUUID().toString()
-    private lateinit var repoMock:Repository
-    private lateinit var SUT:CrimeDetailViewModel
+    private lateinit var repoMock: Repository
+    private lateinit var SUT: CrimeDetailViewModel
 
 
     @Before
     fun setUp() {
         repoMock = mock()
-        SUT = CrimeDetailViewModel(repoMock,CRIME_ID)
+        SUT = CrimeDetailViewModel(repoMock, CRIME_ID)
     }
 
     @Test
-    fun initializeCrime_idNotNull_shouldCallRepo()= runBlocking {
+    fun initializeCrime_idNotNull_shouldCallRepo() = runBlocking {
         repoMock = mock()
-        SUT = CrimeDetailViewModel(repoMock,CRIME_ID)
-
+        SUT = CrimeDetailViewModel(repoMock, CRIME_ID)
 
 
         val job = launch {
@@ -46,7 +45,7 @@ class CrimeDetailViewModelTest{
 
 
     @Test
-    fun saveCrime_titleAndSuspectAreEmpty_shouldShowErrorMessage(){
+    fun saveCrime_titleAndSuspectAreEmpty_shouldShowErrorMessage() {
         SUT._suspect.value = ""
         SUT._titleEditText.value = ""
         val mockObserer = mock<Observer<Boolean>>()
@@ -56,6 +55,7 @@ class CrimeDetailViewModelTest{
 
         verify(mockObserer).onChanged(eq(true))
     }
+
     @Test
     fun saveCrime_titleAndSuspectAreNeitherEmptyNorNull_shouldCallUpdateUI() = runBlocking {
         SUT._suspect.value = "SUSPECT"
@@ -68,6 +68,7 @@ class CrimeDetailViewModelTest{
         }
         job.cancel()
     }
+
     @Test
     fun saveCrime_titleAndSuspectAreNeitherEmptyNorNull_shouldCallRepoSave() = runBlocking {
         SUT._suspect.value = "SUSPECT"
@@ -98,7 +99,7 @@ class CrimeDetailViewModelTest{
     }
 
     @Test
-    fun resetNavigateUp_shouldSetValueToFalse()=runBlocking{
+    fun resetNavigateUp_shouldSetValueToFalse() = runBlocking {
         val mockObserer = mock<Observer<Boolean>>()
         SUT.navigateUp.observeForever(mockObserer)
 
@@ -111,8 +112,19 @@ class CrimeDetailViewModelTest{
         job.cancel()
     }
 
+    @Test
+    fun deleteCrime_shouldCallRepoAndNavigateUp() = runBlocking {
+        val mockObserer = mock<Observer<Boolean>>()
+        SUT.navigateUp.observeForever(mockObserer)
 
+        val job = launch {
+            SUT.deleteCrime()
 
+            verify(repoMock).delete(ArgumentMatchers.any())
+            verify(mockObserer).onChanged(ArgumentMatchers.eq(true))
+        }
+        job.cancel()
+    }
 
 
 }
