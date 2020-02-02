@@ -11,7 +11,9 @@
         tools:layout="@layout/fragment_crimes_list">
         <action
             android:id="@+id/action_listCrimesFragment_to_crimeFragment"
-            app:destination="@id/crimeFragment" />
+            app:destination="@id/crimeFragment"
+            app:popUpTo="@+id/listCrimesFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
